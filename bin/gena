@@ -1,0 +1,49 @@
+#!/usr/bin/env ruby
+
+require 'cc_generate'
+
+unless system "which xc-resave >> /dev/null"
+  raise "\nPlease install xc-resave utility first. Run: \n\nbrew install alexgarbarev/core/xc-resave\n\n"
+end
+
+TEMPLATES_FOLDER = "Templates"
+
+
+# Include all template code files
+Dir["#{TEMPLATES_FOLDER}/**/*.rb"].each do |file|
+  require "./#{file}"
+end
+
+cli = GenerateCli.new
+options = cli.parse_arguments
+
+if options[:cleanup]
+  ramba_adapter = RambaAdapter.new(nil, nil)
+  ramba_adapter.delete_default_template
+  ramba_adapter.delete_rambafile
+  exit
+end
+
+config = Generate::Config.new
+config.load_plist_config
+
+template = Generate::BaseTemplate.new_from_options(options, config)
+
+unless template.class.generamba?
+  template.run
+  exit
+end
+
+ramba_adapter = RambaAdapter.new(template, config)
+ramba_adapter.create_rambafile
+ramba_adapter.regenerate_default_template
+
+cli_command = ramba_adapter.generamba_gen_command(options)
+cli_command << " && #{__FILE__} --cleanup"
+
+if options[:verbose]
+  puts "#{cli_command}"
+end
+
+exec "#{cli_command}"
+
