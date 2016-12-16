@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name        = 'cc_generate'
+  s.name        = 'gena'
   s.version     = '0.0.3'
   s.date        = '2016-12-16'
   s.summary     = "iOS code generation tool"
@@ -9,14 +9,14 @@ Gem::Specification.new do |s|
   s.files       = ["lib/base_template.rb",
                    "lib/config.rb",
                    "lib/ramba_adapter.rb",
-                   "lib/cc_generate.rb",
+                   "lib/gena.rb",
                    "lib/generate_cli.rb",
                    "lib/string_utils.rb"]
   s.homepage    =
     'http://rubygems.org/gems/cc_generate'
   s.license       = 'MIT'
   s.executables << 'gena'
-  s.add_runtime_dependency 'generamba', '>= 1.3.0'
-  s.add_runtime_dependency 'plist'
-  s.add_runtime_dependency 'ttfunk'
+  s.add_runtime_dependency 'generamba', '~> 1.3', '>= 1.3.0'
+  s.add_runtime_dependency 'plist', '~> 3.2', '>= 3.2.0'
+  s.add_runtime_dependency 'ttfunk', '~> 1.4', '>= 1.4.0'
 end
