@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'cc_generate'
-  s.version     = '0.0.1'
+  s.version     = '0.0.2'
   s.date        = '2016-12-16'
   s.summary     = "iOS code generation tool"
   s.description = "Depends on Generamba it generates templates for generamba :)"

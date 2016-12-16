@@ -12,9 +12,9 @@ class GenerateCli
     options = {}
 
     parser = OptionParser.new do |opts|
-      opts.banner = "Usage: generate.rb TYPE MODULE_NAME [options]"
+      opts.banner = "Usage: gena TEMPLATE MODULE_NAME [options]"
       opts.separator ""
-      opts.separator "TYPE is be one of [#{all_types}]"
+      opts.separator "TEMPLATE is be one of [#{all_types}]"
       opts.separator ""
       opts.separator "Options are:"
 
@@ -31,7 +31,7 @@ class GenerateCli
 
     type = ARGV[0]
     unless type
-      puts "\n- You should specify TYPE to proceed\n\n----\n\n"
+      puts "\n- You should specify TEMPLATE to proceed\n\n----\n\n"
       puts parser
       exit
     end

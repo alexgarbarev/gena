@@ -39,7 +39,7 @@ ramba_adapter.create_rambafile
 ramba_adapter.regenerate_default_template
 
 cli_command = ramba_adapter.generamba_gen_command(options)
-cli_command << " && #{__FILE__} --cleanup"
+cli_command << " || #{__FILE__} --cleanup"
 
 if options[:verbose]
   puts "#{cli_command}"
