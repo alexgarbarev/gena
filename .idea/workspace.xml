@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ea0935e4-dd5c-4aae-9585-6901a9d87099" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gena" afterPath="$PROJECT_DIR$/bin/gena" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cc_generate.gemspec" afterPath="$PROJECT_DIR$/cc_generate.gemspec" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/generate_cli.rb" afterPath="$PROJECT_DIR$/lib/generate_cli.rb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,17 +20,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="generate_cli.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="generate_cli.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/generate_cli.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="33" column="43" lean-forward="false" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
+            <state relative-caret-position="90">
+              <caret line="6" column="32" lean-forward="false" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cc_generate.gemspec" pinned="false" current-in-tab="false">
+      <file leaf-file-name="cc_generate.gemspec" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/cc_generate.gemspec">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
@@ -162,9 +160,9 @@
         <option value="$PROJECT_DIR$/lib/generate.rb" />
         <option value="$PROJECT_DIR$/bin/generate" />
         <option value="$PROJECT_DIR$/lib/cc_generate.rb" />
-        <option value="$PROJECT_DIR$/cc_generate.gemspec" />
         <option value="$PROJECT_DIR$/bin/gena" />
         <option value="$PROJECT_DIR$/lib/generate_cli.rb" />
+        <option value="$PROJECT_DIR$/cc_generate.gemspec" />
       </list>
     </option>
   </component>
@@ -410,12 +408,12 @@
       <workItem from="1481809720043" duration="309000" />
       <workItem from="1481813525589" duration="10781000" />
       <workItem from="1481825892933" duration="17729000" />
-      <workItem from="1481883568233" duration="58000" />
+      <workItem from="1481883568233" duration="179000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38128000" />
+    <option name="totallyTimeSpent" value="38249000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="431" y="202" width="1345" height="819" extended-state="0" />
@@ -528,14 +526,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cc_generate.gemspec">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="24" lean-forward="false" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/gena">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="515">
@@ -562,8 +552,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/generate_cli.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="43" lean-forward="false" selection-start-line="33" selection-start-column="43" selection-end-line="33" selection-end-column="43" />
+        <state relative-caret-position="90">
+          <caret line="6" column="32" lean-forward="false" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cc_generate.gemspec">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="24" lean-forward="false" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
           <folding />
         </state>
       </provider>

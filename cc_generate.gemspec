@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'cc_generate'
-  s.version     = '0.0.2'
+  s.version     = '0.0.3'
   s.date        = '2016-12-16'
   s.summary     = "iOS code generation tool"
   s.description = "Depends on Generamba it generates templates for generamba :)"
@@ -17,4 +17,6 @@ Gem::Specification.new do |s|
   s.license       = 'MIT'
   s.executables << 'gena'
   s.add_runtime_dependency 'generamba', '>= 1.3.0'
+  s.add_runtime_dependency 'plist'
+  s.add_runtime_dependency 'ttfunk'
 end
