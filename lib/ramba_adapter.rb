@@ -89,6 +89,7 @@ class RambaAdapter
       cli_command << " --custom_parameters #{custom_params}"
     end
 
+    cli_command
   end
 
 end
