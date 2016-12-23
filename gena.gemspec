@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'gena'
-  s.version     = '0.0.4'
+  s.version     = '0.0.5'
   s.date        = '2016-12-16'
   s.summary     = "iOS code generation tool"
   s.description = "Depends on Generamba it generates templates for generamba :)"

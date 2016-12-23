@@ -24,6 +24,13 @@ if options[:cleanup]
   exit
 end
 
+at_exit do
+  puts 'Cleaning up..'
+  ramba_adapter = RambaAdapter.new(nil, nil)
+  ramba_adapter.delete_default_template
+  ramba_adapter.delete_rambafile
+end
+
 config = Generate::Config.new
 config.load_plist_config
 
@@ -39,7 +46,6 @@ ramba_adapter.create_rambafile
 ramba_adapter.regenerate_default_template
 
 cli_command = ramba_adapter.generamba_gen_command(options)
-cli_command << " && #{__FILE__} --cleanup"
 cli_command << " && xc-resave #{config.xcode_project_path}"
 
 
