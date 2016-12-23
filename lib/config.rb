@@ -10,7 +10,13 @@ module Generate
     @config = {}
 
     def load_plist_config()
-      @config = Plist::parse_xml('generate.plist')
+
+      if File.exists?('generate.plist')
+        puts 'Found old generate.plist. Renaming to gena.plist'
+        FileUtils.mv('generate.plist', 'gena.plist')
+      end
+
+      @config = Plist::parse_xml('gena.plist')
     end
 
     def to_rambafile()
