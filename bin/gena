@@ -17,18 +17,20 @@ end
 cli = GenerateCli.new
 options = cli.parse_arguments
 
-if options[:cleanup]
+def cleanup
   ramba_adapter = RambaAdapter.new(nil, nil)
   ramba_adapter.delete_default_template
   ramba_adapter.delete_rambafile
+end
+
+if options[:cleanup]
+  cleanup
   exit
 end
 
 at_exit do
   puts 'Cleaning up..'
-  ramba_adapter = RambaAdapter.new(nil, nil)
-  ramba_adapter.delete_default_template
-  ramba_adapter.delete_rambafile
+  cleanup
 end
 
 config = Generate::Config.new
@@ -46,8 +48,8 @@ ramba_adapter.create_rambafile
 ramba_adapter.regenerate_default_template
 
 cli_command = ramba_adapter.generamba_gen_command(options)
+cli_command << " && #{__FILE__} --cleanup"
 cli_command << " && xc-resave #{config.xcode_project_path}"
-
 
 if options[:verbose]
   puts "#{cli_command}"
