@@ -19,7 +19,7 @@ class RambaAdapter
   end
 
   def delete_rambafile
-    FileUtils.rm("./#{RAMBAFILE_NAME}")
+    FileUtils.rm_f("./#{RAMBAFILE_NAME}")
   end
 
   def regenerate_default_template
@@ -62,7 +62,14 @@ class RambaAdapter
   end
 
   def template_directory(template)
-    "#{TEMPLATES_FOLDER}/#{template.class.template_name}"
+    project_path = "#{TEMPLATES_PROJECT_FOLDER}/#{template.class.template_name}"
+    if File.exists?(project_path)
+      puts 'Using project template'
+      project_path
+    else
+      puts 'Using system template'
+      "#{TEMPLATES_SYSTEM_FOLDER}/#{template.class.template_name}"
+    end
   end
 
   def copy_if_needed(src, dst)

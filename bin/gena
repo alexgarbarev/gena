@@ -6,12 +6,18 @@ unless system "which xc-resave >> /dev/null"
   raise "\nPlease install xc-resave utility first. Run: \n\nbrew install alexgarbarev/core/xc-resave\n\n"
 end
 
-TEMPLATES_FOLDER = "Templates"
-
+TEMPLATES_PROJECT_FOLDER = File.expand_path('Templates')
+TEMPLATES_SYSTEM_FOLDER = File.expand_path('~/.gena/templates')
 
 # Include all template code files
-Dir["#{TEMPLATES_FOLDER}/**/*.rb"].each do |file|
-  require "./#{file}"
+
+registered = []
+Dir["#{TEMPLATES_PROJECT_FOLDER}/**/*.rb", "#{TEMPLATES_SYSTEM_FOLDER}/**/*.rb"].each do |file|
+  template_name = file.split(File::SEPARATOR)[-2]
+  unless registered.include? template_name
+    registered << template_name
+    require file
+  end
 end
 
 cli = GenerateCli.new
@@ -36,6 +42,13 @@ end
 config = Generate::Config.new
 config.load_plist_config
 
+if options[:fetch]
+  FileUtils.rm_rf File.expand_path(TEMPLATES_SYSTEM_FOLDER)
+  FileUtils.mkdir_p File.expand_path(TEMPLATES_SYSTEM_FOLDER)
+  command = "git clone --depth 1 #{config.config['templates_url']} #{TEMPLATES_SYSTEM_FOLDER}"
+  exec command
+end
+
 template = Generate::BaseTemplate.new_from_options(options, config)
 
 unless template.class.generamba?
@@ -56,4 +69,3 @@ if options[:verbose]
 end
 
 exec "#{cli_command}"
-

@@ -25,6 +25,7 @@ class GenerateCli
       opts.on('-v', '--verbose') { options[:verbose] = true }
       opts.on('--tests', 'Generate tests if possible') {  options[:generate_tests] = true }
       opts.on('--cleanup', 'Removes temporary data instead of generation') { options[:cleanup] = true; return options; }
+      opts.on('--fetch', 'Fetches templates from remote repository') { options[:fetch] = true; return options; }
     end
 
     parser.parse!
