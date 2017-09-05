@@ -1,10 +1,9 @@
 
 require_relative 'config'
+require_relative 'constants'
 
 class RambaAdapter
 
-  RAMBAFILE_NAME = 'Rambafile'
-  RAMBA_TEMPLATES_FOLDER = 'Templates'
 
   @template
   @config
@@ -12,6 +11,12 @@ class RambaAdapter
   def initialize(template, config)
     @template = template
     @config = config
+  end
+
+  def self.cleanup
+    ramba_adapter = RambaAdapter.new(nil, nil)
+    ramba_adapter.delete_default_template
+    ramba_adapter.delete_rambafile
   end
 
   def create_rambafile

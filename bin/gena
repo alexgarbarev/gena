@@ -6,37 +6,23 @@ unless system "which xc-resave >> /dev/null"
   raise "\nPlease install xc-resave utility first. Run: \n\nbrew install alexgarbarev/core/xc-resave\n\n"
 end
 
-TEMPLATES_PROJECT_FOLDER = File.expand_path('Templates')
-TEMPLATES_SYSTEM_FOLDER = File.expand_path('~/.gena/templates')
 
-# Include all template code files
-
-registered = []
-Dir["#{TEMPLATES_PROJECT_FOLDER}/**/*.rb", "#{TEMPLATES_SYSTEM_FOLDER}/**/*.rb"].each do |file|
-  template_name = file.split(File::SEPARATOR)[-2]
-  unless registered.include? template_name
-    registered << template_name
-    require file
-  end
-end
+loader = PluginsLoader.new
+loader.load_all_plugins
 
 cli = GenaCli.new
 options = cli.parse_arguments
 
-def cleanup
-  ramba_adapter = RambaAdapter.new(nil, nil)
-  ramba_adapter.delete_default_template
-  ramba_adapter.delete_rambafile
-end
+
 
 if options[:cleanup]
-  cleanup
+  RambaAdapter.cleanup
   exit
 end
 
 at_exit do
   puts 'Cleaning up..'
-  cleanup
+  RambaAdapter.cleanup
 end
 
 config = Generate::Config.new

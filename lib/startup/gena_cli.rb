@@ -1,5 +1,5 @@
 require 'optparse'
-require_relative 'base_template'
+require_relative '../base_template'
 
 class GenaCli
 
