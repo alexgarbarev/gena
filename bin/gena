@@ -20,7 +20,7 @@ Dir["#{TEMPLATES_PROJECT_FOLDER}/**/*.rb", "#{TEMPLATES_SYSTEM_FOLDER}/**/*.rb"]
   end
 end
 
-cli = GenerateCli.new
+cli = GenaCli.new
 options = cli.parse_arguments
 
 def cleanup

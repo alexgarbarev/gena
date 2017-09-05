@@ -1,7 +1,7 @@
 require 'optparse'
 require_relative 'base_template'
 
-class GenerateCli
+class GenaCli
 
   def all_types
     Generate::BaseTemplate.descendants.map { |clazz| clazz.template_name.downcase }.join(', ')
