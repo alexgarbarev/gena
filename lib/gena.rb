@@ -9,5 +9,6 @@ require_relative 'config'
 require_relative 'base_template'
 require_relative 'ramba_adapter'
 require_relative 'string_utils'
+require_relative 'utils/system_utils'
 
 

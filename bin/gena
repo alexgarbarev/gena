@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
-require 'gena'
+# require 'gena'
+require_relative '../lib/gena'
 
 unless system "which xc-resave >> /dev/null"
   raise "\nPlease install xc-resave utility first. Run: \n\nbrew install alexgarbarev/core/xc-resave\n\n"
