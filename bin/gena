@@ -3,12 +3,6 @@
 # require 'gena'
 require_relative '../lib/gena'
 
-
-# Gena::Module.setup_command(Gena::Application)
-# Gena::Fonts.setup_command(Gena::Application)
-
-Gena::Module.setup_thor_commands(Gena::Application)
-
 Gena::Application.start(ARGV)
 
 exit

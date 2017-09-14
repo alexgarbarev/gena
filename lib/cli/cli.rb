@@ -7,37 +7,19 @@ module Gena
 
   class Plugin < Thor
 
-    def self.setup_thor_commands(thor_class)
-
-      # puts "Class commands: #{thor_class.commands}"
-      # puts "Self commands: #{self.commands}"
-
-      thor_class.commands.merge!(self.commands)
-
+    def self.setup_thor_commands
+      app_klass = Gena::Application
+      app_klass.commands.merge!(self.commands)
       self.commands.each do |key, value|
-        hash = Gena::Application.class_for_command
+        hash = app_klass.class_for_command
         hash[key] = self
-        Gena::Application.class_for_command = hash
+        app_klass.class_for_command = hash
       end
-      # puts "Hash: #{Gena::Application.class_for_command}"
-
-
-      # puts "Then class commands: #{thor_class.commands}"
-
-      # # Adding methods to thor application class.
-      # self_ref = self
-      # puts "self: #{self_ref}"
-      # thor_class.class_eval do
-      #   puts "eval self: #{self}"
-      #   self_ref.thor_commands
-      # end
     end
 
-    # def self.thor_commands
-    #
-    #
-    #
-    # end
+    def self.descendants
+      ObjectSpace.each_object(Class).select { |klass| klass < self }
+    end
 
   end
 
@@ -46,60 +28,24 @@ end
 module Gena
 
   class Module < Plugin
-
     desc 'module MODULE_NAME', 'Generates VIPER module with given name'
     method_option :scope, :banner => 'NAME', :desc => 'Defines subdirectory for module'
 
     def module(name)
       puts "Module name: #{name}, options: #{options}"
     end
+  end
 
 
+  class Fonts < Plugin
+    desc 'fonts', 'Adds custom fonts to the projects and creates category'
+    def fonts
+      puts 'Fonts updated!'
+    end
   end
 
 end
 
-
-# module Gena
-#
-#   class Plugin < Thor
-#
-#
-#     desc 'module MODULE_NAME', 'Generates VIPER module with given name'
-#     method_option :scope, :banner => 'NAME', :desc => 'Defines subdirectory for module'
-#     def module(name)
-#       puts "Module name: #{name}, options: #{options}"
-#     end
-#
-#   end
-#
-# end
-
-
-# module Gena
-#
-#   class Plugin < Thor
-#
-#
-#     desc 'fonts', 'Adds custom fonts to the projects and creates category'
-#
-#     def fonts
-#       puts 'Fonts updated!'
-#       private_m
-#     end
-#
-#     no_commands do
-#
-#
-#       def private_m
-#
-#       end
-#
-#     end
-#
-#   end
-#
-# end
 
 
 module Gena
@@ -160,6 +106,8 @@ module Gena
       end
 
       def start(given_args = ARGV, config = {})
+        load_plugins
+
         config[:shell] ||= Thor::Base.shell.new
 
         command_name = normalize_command_name(retrieve_command_name(given_args.dup))
@@ -181,6 +129,13 @@ module Gena
         # computation will not occur.
         exit(0)
       end
+
+      def load_plugins
+        Gena::Plugin.descendants.each do |clazz|
+          clazz.setup_thor_commands
+        end
+      end
+
     end
 
 
@@ -189,34 +144,6 @@ module Gena
 
 end
 
-
-module MyModule
-
-end
-#
-# module Gena
-#   # class Gena::Plugin
-#
-#   # class Plugin < Application
-#   #
-#   # end
-#
-#   # class Module < Thor
-#
-#     def self.included(thor)
-#       thor.class_eval do
-#
-#
-#
-#
-#       end
-#     # end
-#
-#
-#
-#   end
-#
-# end
 
 
 
