@@ -1,4 +1,4 @@
-module Generate
+module Gena
 
   class BaseTemplate
 

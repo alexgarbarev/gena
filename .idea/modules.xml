@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/generator.iml" filepath="$PROJECT_DIR$/.idea/generator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/gena.iml" filepath="$PROJECT_DIR$/.idea/gena.iml" />
     </modules>
   </component>
 </project>

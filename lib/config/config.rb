@@ -3,11 +3,27 @@ require 'plist'
 require 'yaml'
 require 'generamba'
 
-module Generate
+module Gena
 
   class Config
 
     @config = {}
+
+    def Config.exists?
+      File.exists?('gena.plist')
+    end
+
+    def Config.create_if_needed
+
+      unless Config.exists?
+        puts "gena.plist is not exists. Do you want to create one?"
+        result = gets.chomp
+        puts "r = #{result}"
+        # exit_with_message 'Gena.plist is not exists'
+      end
+
+
+    end
 
     def load_plist_config()
 

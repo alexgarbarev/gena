@@ -3,15 +3,26 @@
 # require 'gena'
 require_relative '../lib/gena'
 
+
+# Gena::Module.setup_command(Gena::Application)
+# Gena::Fonts.setup_command(Gena::Application)
+
+Gena::Module.setup_thor_commands(Gena::Application)
+
+Gena::Application.start(ARGV)
+
+exit
+
 unless system "which xc-resave >> /dev/null"
   raise "\nPlease install xc-resave utility first. Run: \n\nbrew install alexgarbarev/core/xc-resave\n\n"
 end
 
+Gena::Config.create_if_needed
 
 loader = PluginsLoader.new
 loader.load_all_plugins
 
-cli = GenaCli.new
+cli = Gena::Cli.new
 options = cli.parse_arguments
 
 
@@ -26,7 +37,7 @@ at_exit do
   RambaAdapter.cleanup
 end
 
-config = Generate::Config.new
+config = Gena::Config.new
 config.load_plist_config
 
 if options[:fetch]
@@ -36,7 +47,7 @@ if options[:fetch]
   exec command
 end
 
-template = Generate::BaseTemplate.new_from_options(options, config)
+template = Gena::BaseTemplate.new_from_options(options, config)
 
 unless template.class.generamba?
   template.run

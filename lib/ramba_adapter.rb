@@ -1,5 +1,5 @@
 
-require_relative 'config'
+require_relative 'config/config'
 require_relative 'constants'
 
 class RambaAdapter
@@ -47,7 +47,7 @@ class RambaAdapter
     copy_if_needed "#{type_dir}/Tests", "#{dst_dir}/Tests"
     copy_if_needed "#{type_dir}/snippets", "#{dst_dir}/snippets"
 
-    #Generate rambaspec
+    #Gena rambaspec
     generate_rambaspec("#{dst_dir}/default.rambaspec", @template.options)
   end
 
