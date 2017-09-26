@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ea0935e4-dd5c-4aae-9585-6901a9d87099" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/cli/cli.rb" afterPath="$PROJECT_DIR$/lib/cli/cli.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/gena.rb" afterPath="$PROJECT_DIR$/lib/gena.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/gena" afterPath="$PROJECT_DIR$/bin/gena" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/config/config.rb" afterPath="$PROJECT_DIR$/lib/config/config.rb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/gena@gena.coverage" NAME="gena Coverage Results" MODIFIED="1506464637539" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bin" MODULE_NAME="gena" />
+    <SUITE FILE_PATH="coverage/gena@gena.coverage" NAME="gena Coverage Results" MODIFIED="1506464798605" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/bin" MODULE_NAME="gena" />
     <SUITE FILE_PATH="coverage/gena@Run_Tests.coverage" NAME="Run Tests Coverage Results" MODIFIED="1505125417409" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gena" />
     <SUITE FILE_PATH="coverage/gena@Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1505296649992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="gena" />
   </component>
@@ -38,28 +37,18 @@
       <file leaf-file-name="gena" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/gena">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+            <state relative-caret-position="255">
+              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ruby-debug-ide.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.3.3/gems/ruby-debug-ide-0.6.1.beta3/lib/ruby-debug-ide.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1547">
-              <caret line="91" column="0" lean-forward="false" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="cli.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cli.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/cli/cli.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+            <state relative-caret-position="153">
+              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding>
                 <element signature="e#514#3086#2" expanded="false" />
               </folding>
@@ -67,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="config.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/config/config.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="9" lean-forward="false" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
+            <state relative-caret-position="255">
+              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -97,21 +86,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="thor.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.3.3/gems/bundler-1.13.6/lib/bundler/vendor/thor/lib/thor.rb">
+      <file leaf-file-name="base_template.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/base_template.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7531">
-              <caret line="443" column="8" lean-forward="false" selection-start-line="443" selection-start-column="8" selection-end-line="443" selection-end-column="8" />
+            <state relative-caret-position="-270">
+              <caret line="39" column="7" lean-forward="false" selection-start-line="37" selection-start-column="3" selection-end-line="39" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base_template.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/base_template.rb">
+      <file leaf-file-name="ramba_adapter.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/ramba_adapter.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="39" column="7" lean-forward="false" selection-start-line="37" selection-start-column="3" selection-end-line="39" selection-end-column="7" />
+            <state relative-caret-position="374">
+              <caret line="22" column="77" lean-forward="true" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="77" />
               <folding />
             </state>
           </provider>
@@ -127,10 +116,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="system_utils.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/utils/system_utils.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="gena_cli.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/startup/gena_cli.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
+            <state relative-caret-position="-406">
               <caret line="11" column="20" lean-forward="false" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
               <folding />
             </state>
@@ -222,12 +221,12 @@
         <option value="$PROJECT_DIR$/test/test_gena_binary.rb" />
         <option value="$PROJECT_DIR$/lib/ramba_adapter.rb" />
         <option value="$PROJECT_DIR$/lib/startup/gena_cli.rb" />
-        <option value="$PROJECT_DIR$/lib/config/config.rb" />
         <option value="$PROJECT_DIR$/Gemfile" />
-        <option value="$PROJECT_DIR$/bin/gena" />
         <option value="$PROJECT_DIR$/lib/plugin/plugin.rb" />
         <option value="$PROJECT_DIR$/lib/gena.rb" />
         <option value="$PROJECT_DIR$/lib/cli/cli.rb" />
+        <option value="$PROJECT_DIR$/bin/gena" />
+        <option value="$PROJECT_DIR$/lib/config/config.rb" />
       </list>
     </option>
   </component>
@@ -314,7 +313,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="plugin" />
+              <option name="myItemId" value="utils" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gena" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="gena" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="startup" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -622,7 +639,7 @@
       <workItem from="1505296597158" duration="1151000" />
       <workItem from="1505396546925" duration="3481000" />
       <workItem from="1506206085533" duration="632000" />
-      <workItem from="1506463493890" duration="1211000" />
+      <workItem from="1506463493890" duration="2515000" />
     </task>
     <servers />
   </component>
@@ -659,7 +676,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77766000" />
+    <option name="totallyTimeSpent" value="79070000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -764,24 +781,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/utils/system_utils.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/string_utils.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="5" lean-forward="false" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/ramba_adapter.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="31" lean-forward="false" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -883,38 +886,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/base_template.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="39" column="7" lean-forward="false" selection-start-line="37" selection-start-column="3" selection-end-line="39" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/startup/gena_cli.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="20" lean-forward="false" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/startup/plugins_loader.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/gena">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.rvm/gems/ruby-2.3.3/gems/bundler-1.13.6/lib/bundler/vendor/thor/lib/thor/base.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-85">
@@ -939,21 +910,69 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/config/config.rb">
+    <entry file="file://$PROJECT_DIR$/lib/cli/cli.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="9" lean-forward="false" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding>
+            <element signature="e#514#3086#2" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/startup/gena_cli.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-406">
+          <caret line="11" column="20" lean-forward="false" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/cli/cli.rb">
+    <entry file="file://$PROJECT_DIR$/lib/startup/plugins_loader.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <element signature="e#514#3086#2" expanded="false" />
-          </folding>
+        <state relative-caret-position="272">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/utils/system_utils.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/base_template.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-270">
+          <caret line="39" column="7" lean-forward="false" selection-start-line="37" selection-start-column="3" selection-end-line="39" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/ramba_adapter.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="77" lean-forward="true" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/gena">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/config/config.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

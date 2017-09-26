@@ -5,6 +5,29 @@ require 'generamba'
 
 module Gena
 
+  class Application < Thor
+
+    desc 'init', 'Initialize gena.plist with default parameters'
+    def init
+      if yes? "'gena.plist' is not exists. Do you want to create new one? (Y/n)", Color::YELLOW
+        Config.create
+        say "'gena.plist' created..", Color::GREEN
+      end
+
+    end
+
+    no_tasks do
+      def check
+        unless Config.exists?
+          init
+        end
+      end
+    end
+
+
+  end
+
+
   class Config
 
     @config = {}
@@ -13,17 +36,17 @@ module Gena
       File.exists?('gena.plist')
     end
 
-    def Config.create_if_needed
+    def Config.create
 
-      unless Config.exists?
-        puts "gena.plist is not exists. Do you want to create one?"
-        result = gets.chomp
-        puts "r = #{result}"
-        # exit_with_message 'Gena.plist is not exists'
-      end
+      hash = Hash.new
+      hash[:plugins_url] = [
+          '~/Development/gena-templates',
+          'git@github.com:Loud-Clear/gena-templates.git'
+      ]
 
-
+      File.open("gena.plist", 'w') {|f| f.write hash.to_plist }
     end
+
 
     def load_plist_config()
 

@@ -3,7 +3,10 @@
 # require 'gena'
 require_relative '../lib/gena'
 
+Gena::Application.new.check
+
 Gena::Application.start(ARGV)
+
 
 exit
 
