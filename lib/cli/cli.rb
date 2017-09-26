@@ -1,30 +1,6 @@
 require 'thor'
 
 
-## Base class for all plugins
-
-module Gena
-
-  class Plugin < Thor
-
-    def self.setup_thor_commands
-      app_klass = Gena::Application
-      app_klass.commands.merge!(self.commands)
-      self.commands.each do |key, value|
-        hash = app_klass.class_for_command
-        hash[key] = self
-        app_klass.class_for_command = hash
-      end
-    end
-
-    def self.descendants
-      ObjectSpace.each_object(Class).select { |klass| klass < self }
-    end
-
-  end
-
-end
-
 module Gena
 
   class Module < Plugin
@@ -50,11 +26,11 @@ end
 
 module Gena
 
-
   class Application < Thor
 
-
     class << self
+      # class_for_command - hash to store custom classes (actually Plugin subclasses) for each
+      # command registered with gena
 
       def class_for_command
         @class_for_command ||= Hash.new
@@ -64,19 +40,24 @@ module Gena
         @class_for_command = commands
       end
 
-
-      # attr_accessor :class_for_command
+      # Override help to forward
 
       def help(shell, subcommand = false)
+
+        #List plugin commands separately from Gena general commands
+        plugins = []
+        class_for_command.each do |command, klass|
+          plugins += klass.printable_commands(false)
+        end
+
         list = printable_commands(true, subcommand)
         Thor::Util.thor_classes_in(self).each do |klass|
           list += klass.printable_commands(false)
         end
 
+        list -= plugins
 
-        # puts "Com: #{Module.printable_commands(false)}"
-
-        # Remove this line to disable alphabetical sorting
+       # Remove this line to disable alphabetical sorting
         # list.sort! { |a, b| a[0] <=> b[0] }
 
         # Add this line to remove the help-command itself from the output
@@ -85,25 +66,19 @@ module Gena
         if defined?(@package_name) && @package_name
           shell.say "#{@package_name} commands:"
         else
-          shell.say "Commands:"
+          shell.say "General commands:"
         end
 
         shell.print_table(list, :indent => 2, :truncate => true)
         shell.say
         class_options_help(shell)
 
-        # List plugin commands separately from Gena general commands
-        # plugins = []
-        # Thor::Util.thor_classes_in(Gena::Plugin).each do |klass|
-        #   plugins += klass.printable_commands(false)
-        # end
-        # shell.say "Plugins:"
-        # shell.print_table(plugins, :indent => 2, :truncate => true)
-
-        # Add this line if you want to print custom text at the end of your help output.
-        # (similar to how Rails does it)
-        # shell.say 'All commands can be run with -h (or --help) for more information.'
+        shell.say "Plugins:"
+        shell.print_table(plugins, :indent => 2, :truncate => true)
       end
+
+
+      # Override start to load plugins and do custom dispatch (looking for plugin for unknown command)
 
       def start(given_args = ARGV, config = {})
         load_plugins
@@ -138,9 +113,7 @@ module Gena
 
     end
 
-
   end
-
 
 end
 

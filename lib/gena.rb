@@ -3,7 +3,9 @@ require 'yaml'
 require 'generamba'
 
 
+require_relative 'plugin/plugin'
 require_relative 'cli/cli'
+
 
 require_relative 'startup/gena_cli'
 require_relative 'startup/plugins_loader'
