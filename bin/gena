@@ -14,7 +14,6 @@ unless system "which xc-resave >> /dev/null"
   raise "\nPlease install xc-resave utility first. Run: \n\nbrew install alexgarbarev/core/xc-resave\n\n"
 end
 
-Gena::Config.create_if_needed
 
 loader = PluginsLoader.new
 loader.load_all_plugins
@@ -40,7 +39,7 @@ config.load_plist_config
 if options[:fetch]
   FileUtils.rm_rf File.expand_path(TEMPLATES_SYSTEM_FOLDER)
   FileUtils.mkdir_p File.expand_path(TEMPLATES_SYSTEM_FOLDER)
-  command = "git clone --depth 1 #{config.config['templates_url']} #{TEMPLATES_SYSTEM_FOLDER}"
+  command = "git clone --depth 1 #{config.data['templates_url']} #{TEMPLATES_SYSTEM_FOLDER}"
   exec command
 end
 

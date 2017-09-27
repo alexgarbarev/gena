@@ -41,7 +41,7 @@ module Gena
 
     def self.new_from_options(options, config)
       template_class = Object.const_get("Generate::#{options[:template_type].capitalize_first}")
-      template_class.new(options, config.config)
+      template_class.new(options, config.data)
     end
 
     def self.name_required?(options)
