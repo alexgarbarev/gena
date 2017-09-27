@@ -32,12 +32,18 @@ module Gena
         $config = Gena::Config.new
         $config.load_plist_config
 
-        if $config.data['plugins_url'].count == 0
+        unless $config.data
+          say '\'gena.plist\' is corrupted! Try recreating', Color::RED
+          abort
+        end
+
+        if !$config.data['plugins_url'] || $config.data['plugins_url'].count == 0
           say "'plugins_url' key is missing inside 'gena.plist'", Color::RED
           abort
         end
         download_plugins
         load_plugins
+        save_plugin_configs
       end
 
       def download_plugins
@@ -78,7 +84,7 @@ module Gena
       def load_plugins
         registered = []
         $config.data['plugins_url'].each do |plugin_url|
-          path = remote_url?(plugin_url) ?  download_path_for(plugin_url) : plugin_url
+          path = remote_url?(plugin_url) ? download_path_for(plugin_url) : plugin_url
           Dir["#{File.expand_path(path)}/**/*.rb"].each do |file|
             template_name = file.split(File::SEPARATOR)[-2]
             unless registered.include? template_name
@@ -88,12 +94,41 @@ module Gena
             end
           end
         end
-        puts "Registered: #{registered}" if $verbose
+        Gena::Plugin.descendants.each do |clazz|
+          clazz.setup_thor_commands
+        end
       end
 
+      def save_plugin_configs
+
+        data = $config.data[GENA_PLUGINS_CONFIG_KEY] || Hash.new
+
+        Application.plugin_classes.each do |klass|
+
+          defaults = klass.plugin_config_defaults
+
+          if defaults.count > 0
+            plugin_config_name = klass.plugin_config_name
+
+            if !data[plugin_config_name] || data[plugin_config_name].count == 0
+              say "Writing config defaults for plugin '#{plugin_config_name}'..", Color::GREEN
+              data[plugin_config_name] = defaults
+            elsif !data[plugin_config_name].keys.to_set.eql? defaults.keys.to_set
+              missing_keys = defaults.keys - data[plugin_config_name].keys
+              say "Adding missing config keys #{missing_keys} for plugin '#{plugin_config_name}.'", Color::GREEN
+              missing_keys.each { |key| data[plugin_config_name][key] = defaults[key] }
+            end
+
+          end
+
+        end
+
+        $config.data[GENA_PLUGINS_CONFIG_KEY] = data
+        $config.save!
+
+      end
 
     end
-
 
   end
 
@@ -110,11 +145,15 @@ module Gena
 
       hash = Hash.new
       hash[:plugins_url] = [
-          '~/Development/gena-templates',
-          'git@github.com:Loud-Clear/gena-templates.git'
+          '~/Development/gena-plugins'
       ]
+      hash['sources_dir'] = 'Sources'
 
       File.open('gena.plist', 'w') { |f| f.write hash.to_plist }
+    end
+
+    def save!
+      File.open('gena.plist', 'w') { |f| f.write self.data.to_plist }
     end
 
 
@@ -142,6 +181,10 @@ module Gena
 
     def data()
       @data
+    end
+
+    def data=(newData)
+      @data = newData
     end
 
     def xcode_project_path()

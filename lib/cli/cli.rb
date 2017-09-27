@@ -1,29 +1,5 @@
 require 'thor'
 
-
-module Gena
-
-  class Module < Plugin
-    desc 'module MODULE_NAME', 'Generates VIPER module with given name'
-    method_option :scope, :banner => 'NAME', :desc => 'Defines subdirectory for module'
-
-    def module(name)
-      puts "Module name: #{name}, options: #{options}"
-    end
-  end
-
-
-  class Fonts < Plugin
-    desc 'fonts', 'Adds custom fonts to the projects and creates category'
-    def fonts
-      puts 'Fonts updated!'
-    end
-  end
-
-end
-
-
-
 module Gena
 
   class Application < Thor
@@ -40,6 +16,10 @@ module Gena
         @class_for_command = commands
       end
 
+      def plugin_classes
+        @class_for_command.values.uniq
+      end
+
       # Override help to forward
 
       def help(shell, subcommand = false)
@@ -49,6 +29,8 @@ module Gena
         class_for_command.each do |command, klass|
           plugins += klass.printable_commands(false)
         end
+
+        plugins.uniq!
 
         list = printable_commands(true, subcommand)
         Thor::Util.thor_classes_in(self).each do |klass|
@@ -78,10 +60,9 @@ module Gena
       end
 
 
-      # Override start to load plugins and do custom dispatch (looking for plugin for unknown command)
+      # Override start to do custom dispatch (looking for plugin for unknown command)
 
       def start(given_args = ARGV, config = {})
-        load_plugins
 
         config[:shell] ||= Thor::Base.shell.new
 
@@ -105,11 +86,7 @@ module Gena
         exit(0)
       end
 
-      def load_plugins
-        Gena::Plugin.descendants.each do |clazz|
-          clazz.setup_thor_commands
-        end
-      end
+
 
     end
 

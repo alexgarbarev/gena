@@ -2,10 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>configs</key>
+	<dict>
+		<key>fonts</key>
+		<dict>
+			<key>category</key>
+			<string>Sources/Presentation/Common/Categories</string>
+			<key>fonts_path</key>
+			<string>Resources/Fonts</string>
+			<key>plist_path</key>
+			<string>Supporting Files/Info.plist</string>
+		</dict>
+	</dict>
 	<key>plugins_url</key>
 	<array>
-		<string>~/Development/gena-templates</string>
-		<string>git@github.com:Loud-Clear/gena-templates.git</string>
+		<string>~/Development/gena-plugins</string>
 	</array>
 </dict>
 </plist>
