@@ -15,4 +15,10 @@ class String
     str = to_s
     str[0,1].downcase + str[1..-1]
   end
+  def delete_last_path_component!
+    self.replace(self.split(File::SEPARATOR)[0..-2].join(File::SEPARATOR))
+  end
+  def delete_last_path_component
+    self.split(File::SEPARATOR)[0..-2].join(File::SEPARATOR)
+  end
 end

@@ -35,6 +35,14 @@ module Gena
         $config.data[GENA_PLUGINS_CONFIG_KEY][self.class.plugin_config_name]
       end
 
+      def sources_path
+        $config.sources_dir
+      end
+
+      def tests_path
+        $config.tests_dir
+      end
+
       def self.plugin_config_name
         self.name.split("::").last.underscore
       end

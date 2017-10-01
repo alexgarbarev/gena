@@ -9,6 +9,8 @@ require_relative 'cli/cli'
 
 require_relative 'startup/gena_cli'
 require_relative 'startup/plugins_loader'
+require_relative 'codegen/codegen'
+
 require_relative 'config/config'
 require_relative 'base_template'
 require_relative 'ramba_adapter'

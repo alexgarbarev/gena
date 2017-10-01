@@ -147,7 +147,7 @@ module Gena
       hash[:plugins_url] = [
           '~/Development/gena-plugins'
       ]
-      hash['sources_dir'] = 'Sources'
+      hash['sources_dir'] = '/Users/alex/Development/fisho-ios/Sources'
 
       File.open('gena.plist', 'w') { |f| f.write hash.to_plist }
     end
@@ -185,6 +185,22 @@ module Gena
 
     def data=(newData)
       @data = newData
+    end
+
+    def project_dir
+      File.expand_path(self.data['project_dir'].empty? ? '.' : self.data['project_dir'])
+    end
+
+    def expand_to_project(path)
+      File.join(self.project_dir, path)
+    end
+
+    def sources_dir
+      self.expand_to_project(self.data['sources_dir'])
+    end
+
+    def tests_dir
+      self.expand_to_project(self.data['tests_dir'])
     end
 
     def xcode_project_path()

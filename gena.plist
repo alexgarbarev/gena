@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>company</key>
+	<string>Loud&amp;Clear</string>
 	<key>configs</key>
 	<dict>
 		<key>fonts</key>
@@ -18,5 +20,19 @@
 	<array>
 		<string>~/Development/gena-plugins</string>
 	</array>
+	<key>prefix</key>
+	<string>FS</string>
+	<key>project_dir</key>
+	<string>/Users/alex/Development/fisho-ios/</string>
+	<key>project_name</key>
+	<string>Fish</string>
+	<key>project_target</key>
+	<string>Fish</string>
+	<key>sources_dir</key>
+	<string>Sources</string>
+	<key>test_target</key>
+	<string>FishTests</string>
+	<key>tests_dir</key>
+	<string>FishTests</string>
 </dict>
 </plist>
