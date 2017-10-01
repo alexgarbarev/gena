@@ -187,12 +187,28 @@ module Gena
       @data = newData
     end
 
+    def data_without_plugins
+      @data.except(GENA_PLUGINS_CONFIG_KEY)
+    end
+
+    def header_dir
+      if @data['header'] && !@data['header'].empty?
+        expand_to_project(File.dirname(@data['header']))
+      else
+        ''
+      end
+    end
+
     def project_dir
       File.expand_path(self.data['project_dir'].empty? ? '.' : self.data['project_dir'])
     end
 
     def expand_to_project(path)
-      File.join(self.project_dir, path)
+      if path[0] == '/'
+        path
+      else
+        File.join(self.project_dir, path)
+      end
     end
 
     def sources_dir
