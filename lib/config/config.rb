@@ -211,6 +211,14 @@ module Gena
       end
     end
 
+    def collapse_to_project(path)
+      if path[0] == '/'
+        path = path.dup
+        path["#{$config.project_dir}/"] = ''
+      end
+      path
+    end
+
     def sources_dir
       self.expand_to_project(self.data['sources_dir'])
     end
@@ -219,8 +227,13 @@ module Gena
       self.expand_to_project(self.data['tests_dir'])
     end
 
-    def xcode_project_path()
-      "#{@data['project_name']}.xcodeproj"
+    def xcode_project_path
+      path = self.expand_to_project("#{@data['project_name']}.xcodeproj")
+      unless File.exists? path
+        say "Can't find project with name '#{@data['project_name']}.xcodeproj''", Color::RED
+        abort
+      end
+      path
     end
 
   end
