@@ -22,7 +22,7 @@ module Gena
 
       def save_project
         if $xcode_project
-          say "Writing project (#{$config.xcode_project_path}) to disk..", Color::YELLOW
+          say "Writing project (#{$config.xcode_project_path}) to disk..", Color::YELLOW if $verbose
           $xcode_project.save
         end
       end
@@ -80,6 +80,8 @@ module Gena
           target.add_file_references([file])
         end
       end
+
+      private
 
       def path_names_from_path(path)
         path.to_s.split('/')

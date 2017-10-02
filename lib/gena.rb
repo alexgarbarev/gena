@@ -1,23 +1,25 @@
 require 'optparse'
 require 'yaml'
-require 'generamba'
+
+require 'thor'
+require 'liquid'
+require 'fileutils'
+require 'xcodeproj'
+
+
+require_relative 'constants'
+require_relative 'utils/system_utils'
+require_relative 'utils/xcode_utils'
 
 
 require_relative 'plugin/plugin'
 require_relative 'cli/cli'
-
-require_relative 'utils/system_utils'
-require_relative 'utils/xcode_utils'
-
-require_relative 'startup/gena_cli'
-require_relative 'startup/plugins_loader'
+require_relative 'cli/init'
 
 require_relative 'codegen/codegen'
 
 require_relative 'config/config'
-require_relative 'base_template'
-require_relative 'ramba_adapter'
-require_relative 'string_utils'
+
 
 
 

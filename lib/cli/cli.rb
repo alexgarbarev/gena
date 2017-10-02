@@ -75,7 +75,7 @@ module Gena
           dispatch(nil, given_args.dup, nil, config)
         end
 
-        XcodeUtils.shared.save_project
+        finish
 
       rescue Thor::Error => e
         config[:debug] || ENV["THOR_DEBUG"] == "1" ? (raise e) : config[:shell].error(e.message)
@@ -88,7 +88,9 @@ module Gena
         exit(0)
       end
 
-
+      def finish
+        XcodeUtils.shared.save_project
+      end
 
     end
 

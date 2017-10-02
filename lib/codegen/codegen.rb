@@ -1,4 +1,4 @@
-require 'liquid'
+
 
 module Gena
 
@@ -34,7 +34,7 @@ module Gena
       def add_file(template_name, file_name, type)
 
         # Getting path for template
-        plugin_dir = caller.first.scan(/.*rb/).first.delete_last_path_component
+        plugin_dir = File.dirname(caller.first.scan(/.*rb/).first)
         template_path = absolute_path_for_template(template_name, plugin_dir)
 
         # Output path
@@ -75,7 +75,6 @@ module Gena
         File.open(output_path, 'w+') do |f|
           f.write(content)
         end
-
       end
 
       def add_file_to_project(output_path, type)
