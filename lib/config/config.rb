@@ -1,6 +1,4 @@
-require 'plist'
-require 'yaml'
-require 'digest'
+
 
 module Gena
 

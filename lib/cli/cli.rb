@@ -5,9 +5,9 @@ module Gena
   class Application < Thor
 
     class << self
+
       # class_for_command - hash to store custom classes (actually Plugin subclasses) for each
       # command registered with gena
-
       def class_for_command
         @class_for_command ||= Hash.new
       end
@@ -17,7 +17,7 @@ module Gena
       end
 
       def plugin_classes
-        @class_for_command.values.uniq
+        class_for_command.values.uniq
       end
 
       # Override help to forward

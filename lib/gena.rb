@@ -6,6 +6,9 @@ require 'liquid'
 require 'fileutils'
 require 'xcodeproj'
 
+require 'plist'
+require 'digest'
+
 
 require_relative 'constants'
 require_relative 'utils/system_utils'
