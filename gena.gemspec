@@ -1,7 +1,13 @@
+
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
+require 'constants'
+
 Gem::Specification.new do |s|
   s.name        = 'gena'
-  s.version     = '0.0.7'
-  s.date        = '2017-10-02'
+  s.version     = Gena::VERSION
+  s.date        = Gena::RELEASE_DATE
   s.summary     = "iOS code generation tool"
   s.description = "Code generation and automation tool"
   s.authors     = ["Aleksey Garbarev"]
@@ -16,6 +22,7 @@ Gem::Specification.new do |s|
     'http://rubygems.org/gems/gena'
   s.license       = 'MIT'
   s.executables << 'gena'
+  s.add_runtime_dependency 'json', '~> 2.2', '>= 2.2.0'
   s.add_runtime_dependency 'xcodeproj', '~> 1.5', '>= 1.5.2'
   s.add_runtime_dependency 'thor', '~> 0.20', '>= 0.20.0'
   s.add_runtime_dependency 'liquid', '~> 4.0', '>= 4.0.0'

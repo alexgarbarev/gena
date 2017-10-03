@@ -8,6 +8,7 @@ require 'xcodeproj'
 
 require 'plist'
 require 'digest'
+require 'json'
 
 
 require_relative 'constants'

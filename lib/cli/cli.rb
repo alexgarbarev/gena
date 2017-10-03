@@ -39,7 +39,7 @@ module Gena
 
         list -= plugins
 
-       # Remove this line to disable alphabetical sorting
+        # Remove this line to disable alphabetical sorting
         # list.sort! { |a, b| a[0] <=> b[0] }
 
         # Add this line to remove the help-command itself from the output
@@ -90,8 +90,43 @@ module Gena
 
       def finish
         XcodeUtils.shared.save_project
+        Application.new.check_gena_version
       end
 
+
+    end
+
+    no_tasks do
+
+
+      def check_gena_version
+        # Read cache
+        say "Checking for update.." if $verbose
+
+        version_path = File.expand_path "#{GENA_HOME}/version.plist"
+        plist = File.exists?(version_path) ? Plist::parse_xml(version_path) : Hash.new
+
+        data = nil
+
+        if !plist['timestamp'] || (DateTime.now.to_time.to_i - plist['timestamp'].to_i) > GENA_UPDATE_CHECK_INTERVAL
+          last_release_text = `curl https://api.github.com/repos/alexgarbarev/gena/releases/latest -s`
+          data = JSON.parse(last_release_text)
+
+          plist['data'] = data
+          plist['timestamp'] = DateTime.now.to_time.to_i
+          File.open(version_path, 'w') { |f| f.write plist.to_plist }
+        else
+          data = plist['data']
+        end
+
+        tag_name = data['tag_name']
+
+        if tag_name > VERSION
+          say "New update v#{tag_name} is available for gena.\nSee release notes: #{data['url']}", Color::YELLOW
+          say "Please update by:\n#{set_color('gem install gena', Color::GREEN)}", Color::YELLOW
+        end
+
+      end
     end
 
   end
