@@ -32,7 +32,7 @@ module Gena
 
       hash = Hash.new
       hash[:plugins_url] = [
-          '~/Development/gena-plugins'
+          'https://github.com/alexgarbarev/gena-plugins.git'
       ]
 
       default_build_configuration = main_target.build_configuration_list.default_configuration_name || 'Debug'
