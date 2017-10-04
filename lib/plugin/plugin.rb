@@ -27,7 +27,7 @@ module Gena
 
       def config
         config = $config.data
-        config.except(GENA_PLUGINS_CONFIG_KEY)
+        config.reject { |k, v| k == GENA_PLUGINS_CONFIG_KEY }
       end
 
       def plugin_config

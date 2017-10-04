@@ -12,8 +12,6 @@
 			<string>Sources/Presentation/Common/Categories</string>
 			<key>fonts_path</key>
 			<string>Resources/Fonts</string>
-			<key>plist_path</key>
-			<string>Supporting Files/Info.plist</string>
 		</dict>
 	</dict>
 	<key>plugins_url</key>

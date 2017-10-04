@@ -12,7 +12,7 @@ require 'json'
 
 
 require_relative 'constants'
-require_relative 'utils/system_utils'
+require_relative 'utils/utils'
 require_relative 'utils/xcode_utils'
 
 

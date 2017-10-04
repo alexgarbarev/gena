@@ -81,7 +81,34 @@ module Gena
         end
       end
 
+      def delete_path(path)
+        load_project_if_needed
+
+        path = $config.collapse_to_project(path)
+
+        path_names = path_names_from_path(path)
+
+        final_group = $xcode_project
+        path_names.each_with_index do |group_name, index|
+          final_group = final_group[group_name]
+        end
+
+        delete_node final_group
+      end
+
       private
+
+      def delete_node(node)
+        if node.kind_of? Xcodeproj::Project::Object::PBXGroup
+          node.recursive_children.each do |child|
+            delete_node(child)
+          end
+          node.remove_from_project
+        elsif node.kind_of? Xcodeproj::Project::Object::PBXFileReference
+          node.build_files.each { |build_file| build_file.remove_from_project }
+          node.remove_from_project
+        end
+      end
 
       def path_names_from_path(path)
         path.to_s.split('/')

@@ -31,7 +31,7 @@ module Gena
       end
 
 
-      def add_file(template_name, file_name, type)
+      def add_file(template_name, file_name, type, params = nil)
 
         # Getting path for template
         plugin_dir = File.dirname(caller.first.scan(/.*rb/).first)
@@ -42,6 +42,7 @@ module Gena
 
         # Params
         template_params = @template_params.merge($config.data_without_plugins)
+        template_params = params.merge(template_params) if params
 
         render_template_to_file(template_path, output_path, template_params)
 
@@ -49,32 +50,21 @@ module Gena
 
       end
 
+      def render_template(template_name, params)
 
-      def render_template(template_path, params)
+        plugin_dir = File.dirname(caller.first.scan(/.*rb/).first)
+        template_path = absolute_path_for_template(template_name, plugin_dir)
 
-        if $config.header_dir.empty?
-          say "No 'header' field inside 'gena.plist'. You can specify path to header's liquid template there. Using default header", Color::YELLOW
-          Liquid::Template.file_system = GenaStaticHeader.new
-        else
-          Liquid::Template.file_system = Liquid::LocalFileSystem.new($config.header_dir, '%s.liquid')
-        end
+        render_template_from_path(template_path, params)
 
-        file_source = IO.read(template_path)
-        template = Liquid::Template.parse(file_source)
-
-        template.render(params)
       end
 
-      def render_template_to_file(template_path, output_path, params)
+      def render_template_to_file(template_name, output_path, params)
 
-        content = render_template(template_path, params)
+        plugin_dir = File.dirname(caller.first.scan(/.*rb/).first)
+        template_path = absolute_path_for_template(template_name, plugin_dir)
 
-        FileUtils.mkpath(File.dirname(output_path))
-
-        say "Writing to file: #{output_path}", Color::GREEN
-        File.open(output_path, 'w+') do |f|
-          f.write(content)
-        end
+        render_template_from_path_to_file(template_path, output_path, params)
       end
 
       def add_file_to_project(output_path, type)
@@ -87,10 +77,44 @@ module Gena
 
         group = XcodeUtils.shared.make_group(dirname, dirname)
 
-        XcodeUtils.shared.add_file(target, group, output_path, false)
+        XcodeUtils.shared.add_file(target, group, output_path, type.is_resource)
+      end
+
+      def remove_from_project(path)
+
+        XcodeUtils.shared.delete_path(path)
+
       end
 
       private
+
+
+      def render_template_from_path(template_path, params)
+
+        if $config.header_dir.empty?
+          say "No 'header' field inside 'gena.plist'. You can specify path to header's liquid template there. Using default header", Color::YELLOW if $verbose
+          Liquid::Template.file_system = GenaStaticHeader.new
+        else
+          Liquid::Template.file_system = Liquid::LocalFileSystem.new($config.header_dir, '%s.liquid')
+        end
+
+        file_source = IO.read(template_path)
+        template = Liquid::Template.parse(file_source)
+
+        template.render(params)
+      end
+
+      def render_template_from_path_to_file(template_path, output_path, params)
+
+        content = render_template(template_path, params)
+
+        FileUtils.mkpath(File.dirname(output_path))
+
+        say "Writing to file: #{output_path}", Color::GREEN
+        File.open(output_path, 'w+') do |f|
+          f.write(content)
+        end
+      end
 
       def absolute_path_for_output(file_name, type)
         # Output path

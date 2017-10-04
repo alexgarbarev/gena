@@ -1,26 +1,5 @@
 module Gena
 
-  String.class_eval do
-    def intersection_at_start(other)
-      (0..[other.size, self.size].min).each { |i|
-
-        if self[i] != other[i]
-          if i > 0
-            return self[0..i-1]
-          else
-            return ''
-          end
-        end
-      }
-      return self
-    end
-
-    def delete_last_path_component
-      self.split(File::SEPARATOR)[0..-2].join(File::SEPARATOR)
-    end
-
-  end
-
   class Application < Thor
 
     desc 'init', 'Initialize gena.plist with default parameters'
@@ -266,14 +245,13 @@ module Gena
 
       def common_path_in_target(target, except_match)
         common = ''
-        # puts "files: #{target.source_build_phase.files}" if log
         target.source_build_phase.files.each do |file|
           unless file.file_ref.real_path.to_s[except_match]
             path_components = file.file_ref.real_path.to_s #.split('/')
             if common.empty?
               common = path_components
             else
-              common = common.intersection_at_start path_components
+              common = common.path_intersection path_components
             end
           end
         end

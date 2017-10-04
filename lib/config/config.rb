@@ -49,7 +49,7 @@ module Gena
     end
 
     def project_dir
-      File.expand_path(self.data['project_dir'].empty? ? '.' : self.data['project_dir'])
+      File.expand_path((!self.data['project_dir'] || self.data['project_dir'].empty?)? '.' : self.data['project_dir'])
     end
 
     def expand_to_project(path)
