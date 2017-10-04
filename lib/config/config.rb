@@ -42,7 +42,7 @@ module Gena
 
     def header_dir
       if @data['header'] && !@data['header'].empty?
-        expand_to_project(File.dirname(@data['header']))
+        expand_to_project(@data['header'])
       else
         ''
       end
