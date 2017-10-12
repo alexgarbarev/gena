@@ -123,6 +123,9 @@ module Gena
 
         if tag_name > VERSION
           say "New update v#{tag_name} is available for gena.\nSee release notes: #{data['url']}", Color::YELLOW
+          if data['body'].length > 0
+          say "---------------------\n#{data['body']}\n---------------------", Color::YELLOW
+          end
           say "Please update by:\n#{set_color('gem install gena', Color::GREEN)}", Color::YELLOW
         end
 

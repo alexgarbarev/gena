@@ -90,7 +90,9 @@ module Gena
 
         final_group = $xcode_project
         path_names.each_with_index do |group_name, index|
-          final_group = final_group[group_name]
+          if final_group
+            final_group = final_group[group_name]
+          end
         end
 
         delete_node final_group

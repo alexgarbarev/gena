@@ -2,8 +2,29 @@ module Gena
 
   class Application < Thor
 
-    desc 'init', 'Initialize gena.plist with default parameters'
+    desc 'reconfigure [COMMAND]', 'Restores default parameters for plugin inside gena.plist'
+    def reconfigure(command)
 
+      $config = Gena::Config.new
+      $config.load_plist_config
+
+      data = $config.data[GENA_PLUGINS_CONFIG_KEY] || Hash.new
+
+      Application.plugin_classes.each do |klass|
+
+        plugin_config_name = klass.plugin_config_name
+        if plugin_config_name == command
+          say "Setting defaults for '#{command}'..", Color::GREEN
+          data[plugin_config_name] = klass.plugin_config_defaults
+          $config.data[GENA_PLUGINS_CONFIG_KEY] = data
+          $config.save!
+          return
+        end
+      end
+      say "Can't find plugin with name '#{command}'", Color::RED
+    end
+
+    desc 'init', 'Initialize gena.plist with default parameters'
     def init
 
       xcode_project_name = `find . -name *.xcodeproj`
@@ -209,10 +230,11 @@ module Gena
               data[plugin_config_name] = defaults
             elsif !data[plugin_config_name].keys.to_set.eql? defaults.keys.to_set
               missing_keys = defaults.keys - data[plugin_config_name].keys
-              say "Adding missing config keys #{missing_keys} for plugin '#{plugin_config_name}.'", Color::GREEN
-              missing_keys.each { |key| data[plugin_config_name][key] = defaults[key] }
+              if missing_keys.count > 0
+                say "Adding missing config keys #{missing_keys} for plugin '#{plugin_config_name}.'", Color::GREEN
+                missing_keys.each { |key| data[plugin_config_name][key] = defaults[key] }
+              end
             end
-
           end
 
         end
