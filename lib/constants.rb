@@ -2,6 +2,6 @@ module Gena
   GENA_HOME = '~/.gena'
   GENA_UPDATE_CHECK_INTERVAL = 10800
   GENA_PLUGINS_CONFIG_KEY = 'configs'
-  VERSION = '0.1.2'
-  RELEASE_DATE = '2017-10-04'
+  VERSION = '0.1.3'
+  RELEASE_DATE = '2018-05-29'
 end
