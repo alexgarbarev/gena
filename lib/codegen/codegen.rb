@@ -40,7 +40,7 @@ module Gena
 
         # Params
         template_params = @template_params.merge($config.data_without_plugins)
-        template_params = params.merge(template_params) if params
+        template_params = template_params.merge(params) if params
         template_params['date'] = Time.now.strftime('%d/%m/%Y')
         template_params['year'] = Time.new.year
 
