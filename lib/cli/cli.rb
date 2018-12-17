@@ -70,7 +70,9 @@ module Gena
         clazz = command_name ? class_for_command[command_name] : nil
 
         if command_name && clazz
-          clazz.dispatch(nil, given_args.dup, nil, config)
+          if check_dependencies(command_name, clazz.dependencies)
+            clazz.dispatch(nil, given_args.dup, nil, config)
+          end
         else
           dispatch(nil, given_args.dup, nil, config)
         end
@@ -124,12 +126,49 @@ module Gena
         if tag_name > VERSION
           say "New update v#{tag_name} is available for gena.\nSee release notes: #{data['url']}", Color::YELLOW
           if data['body'].length > 0
-          say "---------------------\n#{data['body']}\n---------------------", Color::YELLOW
+            say "---------------------\n#{data['body']}\n---------------------", Color::YELLOW
           end
           say "Please update by:\n#{set_color('gem install gena', Color::GREEN)}", Color::YELLOW
         end
 
       end
+
+      def self.check_dependencies(plugin_name, dependencies)
+
+        missing_gems = {}
+
+        dependencies.each do |gem_name, version|
+          begin
+            require gem_name
+          rescue LoadError
+            missing_gems[gem_name] = version
+          end
+        end
+
+        if missing_gems.count > 0
+          puts "The following gems required for #{plugin_name.yellow}:\n\t#{missing_gems.keys.join(', ')}"
+          puts "Would you like to install them? (Yn)"
+          answer = STDIN.gets.chomp
+          if answer == 'Y' || answer == 'y' || answer == '' || answer == 'yes'
+            gems = missing_gems.collect { |k, v| "#{k}:#{v}" }
+            command = "gem install #{gems.join(" ")}"
+            puts command
+            result = system(command)
+            if result
+              puts "All dependencies installed successfully! Run your command again.".green
+            else
+              puts "Error occured while installing dependencies. Please install them manually and try again.".red
+            end
+            return false
+          else
+            puts "Unable to run #{plugin_name}. Please install dependencies and try again.".red
+            return false
+          end
+        else
+          return true
+        end
+      end
+
     end
 
   end

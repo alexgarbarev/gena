@@ -25,9 +25,8 @@ Gem::Specification.new do |s|
     'http://rubygems.org/gems/gena'
   s.license       = 'MIT'
   s.executables << 'gena'
-  s.add_runtime_dependency 'xcodeproj', '~> 1.5', '>= 1.5.2'
+  s.add_runtime_dependency 'xcodeproj', '~> 1.7', '>= 1.7.0'
   s.add_runtime_dependency 'thor', '~> 0.20', '>= 0.20.0'
   s.add_runtime_dependency 'liquid', '~> 4.0', '>= 4.0.0'
   s.add_runtime_dependency 'plist', '~> 3.2', '>= 3.2.0'
-  s.add_runtime_dependency 'ttfunk', '~> 1.4', '>= 1.4.0'
 end

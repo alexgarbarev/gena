@@ -2,7 +2,7 @@ module Gena
 
   class Application < Thor
 
-    desc 'reconfigure [COMMAND]', 'Restores default parameters for plugin inside gena.plist'
+    desc 'reconfigure [PLUGIN]', 'Restores default parameters for plugin inside gena.plist'
     def reconfigure(command)
 
       $config = Gena::Config.new

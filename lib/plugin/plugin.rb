@@ -25,6 +25,10 @@ module Gena
 
     no_tasks do
 
+      def self.dependencies
+        return { }
+      end
+
       def config
         config = $config.data
         config.reject { |k, v| k == GENA_PLUGINS_CONFIG_KEY }
