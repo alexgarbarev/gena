@@ -7,7 +7,7 @@ require 'constants'
 Gem::Specification.new do |s|
   s.name        = 'gena'
   s.version     = Gena::VERSION
-  s.date        = Gena::RELEASE_DATE
+  s.date        = Time.now.utc.strftime("%Y-%m-%d")
   s.summary     = "iOS code generation tool"
   s.description = "Code generation and automation tool"
   s.authors     = ["Aleksey Garbarev"]
