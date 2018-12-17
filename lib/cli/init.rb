@@ -45,16 +45,15 @@ module Gena
         end
       end
 
-      sources_path = common_path_in_target(main_target, 'main.m')
-      tests_path = common_path_in_target(test_target, "#{sources_path}/")
-
-      sources_path = relative_to_current_dir(sources_path)
-      tests_path = relative_to_current_dir(tests_path)
-
       hash = Hash.new
       hash[:plugins_url] = [
           'https://github.com/alexgarbarev/gena-plugins.git'
       ]
+
+      unless main_target
+        say "Can't find application target in your Xcode project. Please create application target and try again", Color::RED
+        abort
+      end
 
       default_build_configuration = main_target.build_configuration_list.default_configuration_name || 'Debug'
       info_plist_value = main_target.build_configuration_list.get_setting('INFOPLIST_FILE')[default_build_configuration]
@@ -65,11 +64,30 @@ module Gena
       hash['company'] = xcode_project.root_object.attributes['ORGANIZATIONNAME'].to_s
       hash['prefix'] = xcode_project.root_object.attributes['CLASSPREFIX'].to_s
       hash['project_name'] = xcode_project.root_object.name
-      hash['project_target'] = main_target.name
-      hash['test_target'] = test_target.name
       hash['info_plist'] = info_plist_value
-      hash['sources_dir'] = ask_with_default("Enter path for #{set_color('sources', Color::YELLOW)} or ENTER to continue (#{sources_path}):", sources_path)
-      hash['tests_dir'] = ask_with_default("Enter path for #{set_color('tests', Color::YELLOW)} or ENTER to continue (#{tests_path}):", tests_path)
+
+      if main_target
+        sources_path = common_path_in_target(main_target, 'main.m')
+        sources_path = relative_to_current_dir(sources_path)
+
+        hash['project_target'] = main_target.name
+        hash['sources_dir'] = ask_with_default("Enter path for #{set_color('sources', Color::YELLOW)} or ENTER to continue (#{sources_path}):", sources_path)
+     end
+
+      if test_target
+        tests_path = common_path_in_target(test_target, "#{sources_path}/")
+        tests_path = relative_to_current_dir(tests_path)
+
+        hash['test_target'] = test_target.name
+        hash['tests_dir'] = ask_with_default("Enter path for #{set_color('tests', Color::YELLOW)} or ENTER to continue (#{tests_path}):", tests_path)
+      else
+        say "Can't find target for UnitTests. You setup it later using 'test_target' and 'tests_dir' key (similar to sources)", Color::YELLOW
+        hash['test_target'] = ''
+        hash['tests_dir'] = ''
+      end
+
+      language = file_exists_in_target?(main_target, 'main.m') ? "objc" : "swift"
+      hash['language'] = ask_with_default("Enter main #{set_color('language', Color::YELLOW)} or ENTER to continue (#{language}):", language)
 
       say '===============================================================', Color::YELLOW
       print_table(hash)
@@ -98,7 +116,7 @@ module Gena
             init
             ARGV.replace([])
           else
-            if yes? "'gena.plist' is not exists. Do you want to create new one? (Y/n)", Color::YELLOW
+            unless no? "'gena.plist' is not exists. Do you want to create new one? (Y/n)", Color::YELLOW
               init
             end
           end
@@ -285,6 +303,15 @@ module Gena
           common = common[0..-2]
         end
         common
+      end
+
+      def file_exists_in_target?(target, file_name)
+        target.source_build_phase.files.each do |file|
+          if File.basename(file.file_ref.real_path.to_s) == file_name
+            return true
+          end
+        end
+        false
       end
 
     end
